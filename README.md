@@ -19,3 +19,11 @@
 - Registries
 - Volumes
 - Networking
+
+## Introducing Containers
+
+#### The Ugly Virtual Machines
+
+We have a separate **Operational System** for each **VM**
+
+[Virtual Machine]: http://www.ntpro.nl/blog/uploads/products_vmfs_diagram.gif "Virtual Machine"
