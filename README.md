@@ -27,3 +27,27 @@
 We have a separate **Operational System** for each **VM**
 
 ![Virtual Machine](http://www.ntpro.nl/blog/uploads/products_vmfs_diagram.gif "Virtual Machine")
+
+
+## Useful Docker commands
+
+Used to show all docker's containers by its **created** column
+
+```bash
+$ docker ps -a | grep "weeks ago" | awk '{print $1}'
+```
+
+Showing all containers that matches with **Exited** Status
+
+```bash
+$ docker ps -a | grep "Exited" | awk '{print $4}'
+```
+Note that the ```bash {print $1}``` is matched with Status Column 
+
+Removing all **Exited** containers
+
+```bash
+$ docker rm ${docker ps -a | grep "Exited" | awk '{print $1}'}
+```
+
+
