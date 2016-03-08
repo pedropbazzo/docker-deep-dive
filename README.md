@@ -50,4 +50,22 @@ Removing all **Exited** containers
 $ docker rm ${docker ps -a | grep "Exited" | awk '{print $1}'}
 ```
 
+Printing all containers ids
+
+```bash
+$ docker ps -qa
+```
+
+Removing all containers
+
+```bash
+$ docker rm $(docker ps -qa)
+```
+Note that if container is running, we can't do that. We got the following message: Conflict, You cannot remove a running container.
+
+Removing all containers ignoring its status and ignoring the error mentioned above
+
+```bash
+$ docker rm --force $(docker ps -qa)
+```
 
