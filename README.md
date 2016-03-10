@@ -1,5 +1,7 @@
 # Docker Deep Dive
 
+## Docker and Virtaulization concepts
+
 **Linux Containers**
 - Containers vs Virtual Machines
 - Kernel namespaces, cggroups, capabilities
@@ -28,6 +30,51 @@ We have a separate **Operational System** for each **VM**
 
 ![Virtual Machine](http://www.ntpro.nl/blog/uploads/products_vmfs_diagram.gif "Virtual Machine")
 
+## Docker run
+
+We will test the **docker run** command with the Jenkins official Image
+```bash
+$ docker run -p 8080:8080 -p 5000:5000 jenkins
+```
+
+The command above use the following: 
+
+**-run** Parameter to indicates which port will be used
+
+**-p** Parameter to indicates which port will be used
+
+**-jenkins** Image name that will be used to build our container. This image will be searched locally and, if it not been found, Docker will try to search at Docker repository
+
+A container will be created with some random name, as **high_almeida** in my example. Is difficult to work with random names, but we can change it as follow:
+
+```bash
+$ docker run --name my-jenkins -p 8080:8080 -p 5000:5000 jenkins
+```
+
+Now our container were created with the name **my-jenkins**
+
+Note that, when we run our container, we are led to inside of the container, but we are able to run in a **daemon** mode, using the **-d** parameter as follow:
+
+```bash
+$ docker run --name my-jenkins -d -p 8080:8080 -p 5000:5000 jenkins
+```
+
+## Docker exec
+
+After create our Jenkins container, we need to go inside of it. We muse use the **docker exec** command as follow:
+
+```bash
+$ docker exec -i -t my-jenkins /bin/bash
+```
+
+## Mounting a volume
+
+```bash
+docker run 
+	--name myjenkins 
+	-p 8080:8080 -p 5000:5000 
+	-v /var/jenkins_home:/var/jenkins_home jenkins
+```
 
 ## Useful Docker commands
 
