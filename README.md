@@ -116,3 +116,57 @@ Removing all containers ignoring its status and ignoring the error mentioned abo
 $ docker rm --force $(docker ps -qa)
 ```
 
+## Granting Docker Control to Non-root Users
+
+- Docker needs to create namespaces
+- Docker needs to create cgroups
+- Docker needs to bind to */var/run/docker.sock*
+
+It's a warning to adding Users to the Docker Group
+- Control which user accounts are members of this group
+- Regularly audit membership of the Docker Group
+
+We can show all groups by typing
+
+```bash
+$ cat /etc/groups
+```
+
+Will show us something as
+
+```bash
+_launchservicesd:*:239:
+_iconservices:*:240:
+_distnote:*:241:
+_nsurlsessiond:*:242:
+_nsurlstoraged:*:243:
+_displaypolicyd:*:244:
+_astris:*:245:
+com.apple.access_disabled:*:396:
+com.apple.access_sessionkey:*:397:
+com.apple.access_screensharing:*:398:
+com.apple.access_ssh:*:399:
+.
+.
+.
+docker:x:112
+```
+
+To add an user to the Docker Group, we must type:
+
+```bash
+$ sudo gpasswd -a gama docker
+```
+
+In the previous command, we sad that we are adding a new user gama -*-a*- to the Docker Group called **docker**.
+
+Now we can see the user added in the Docker Group
+
+```bash
+$ cat /etc/groups
+.
+.
+.
+docker:x:112:gama
+```
+
