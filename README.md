@@ -170,7 +170,37 @@ $ cat /etc/groups
 docker:x:112:gama
 ```
 
-## Docker Exceptions
+# Major Docker Components
+
+### Docker Images
+
+To pull some Docker Image we can type:
+
+```bash
+$ docker pull fedora
+```
+
+The command above will pull the latest version, but we can configure another one, as:
+
+```bash
+$ docker pull fedora:21
+```
+
+We can also pull the image and run te container in the same commando, as following:
+
+```bash
+$ docker run -it fedora /bin/bash
+```
+
+Note that Docker will pull just the latest version. We are able to pull all image versions using the command:
+
+```bash
+$ docker pull -a fedora
+```
+
+Images are stored locally under the directory **/var/lib/docker/<storage driver>**. If you are on Linux, it will be on **/var/lib/docker/aufs**
+
+# Docker Exceptions
 
 **Exception 1 - Unable to connect to internet to pull images**
 
