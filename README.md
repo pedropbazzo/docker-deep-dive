@@ -174,6 +174,12 @@ docker:x:112:gama
 
 **Exception 1 - Unable to connect to internet to pull images**
 
+**Exception message:**
+
+```bash
+Network timed out while trying to connect to https://index.docker.io/v1/repositories/library/busybox/images. You may want to check your internet connection or if you are behind a proxy.
+```
+
 This exception may occur when you are trying to pull images with docker. 
 
 For exemple, we are trying to pull the **busybox** image as follows:
