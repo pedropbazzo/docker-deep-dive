@@ -1,6 +1,6 @@
 # Docker Deep Dive
 
-## Docker and Virtaulization concepts
+## Docker and Virtualization concepts
 
 **Linux Containers**
 - Containers vs Virtual Machines
@@ -169,4 +169,39 @@ $ cat /etc/groups
 .
 docker:x:112:gama
 ```
+
+## Docker Exceptions
+
+**Exception 1 - Unable to connect to internet to pull images**
+
+This exception may occur when you are trying to pull images with docker. 
+
+For exemple, we are trying to pull the **busybox** image as follows:
+
+```docker
+$ docker run -it busybox /bin/bash
+
+Unable to find image 'busybox:latest' locally
+Pulling repository docker.io/library/busybox
+```
+
+Note that we don't have the busybox image and docker tries to pull it and you might receive the following error:
+
+```bash
+Network timed out while trying to connect to https://index.docker.io/v1/repositories/library/busybox/images. You may want to check your internet connection or if you are behind a proxy
+```
+
+If you are using **Docker Machine** on Mac, you may try this one:
+
+```bash
+$ docker-machine restart default
+```
+
+And then:
+
+```bash
+$ eval $(docker-machine env default)
+```
+
+
 
